@@ -355,7 +355,7 @@ body {
     font-size: 25px;
 }
 
-.content .message a {
+.content .message .link {
     color: #ffffff;
     font-weight: bold;
     text-shadow: 0px 3px 0px #000;
@@ -375,6 +375,12 @@ body {
     font-family: 'Superchibby';
     text-shadow: 0px 4px 0px #880833;
     padding-top: 10px;
+    transition: text-shadow 0.2s ease 0s, transform 0.2s ease 0s;
+}
+
+.content .message ul li:hover {
+    text-shadow: 0px 8px 0px #880833;
+    transform: translateY(-5px);
 }
 
 @media (max-width: 800px) {
@@ -398,5 +404,62 @@ body {
     }
     .content .message ul {
         font-size: 30px;
+    }
+}
+
+hr {
+    border: 0;
+    height: 10px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #332879, rgba(0, 0, 0, 0));
+}
+
+/* lcwordle */
+
+.lcwordle {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    gap: 20px;
+    text-align: center;
+}
+
+.lcwordle-image {
+    width: 250px;
+    height: auto;
+    border-radius: 10px;
+}
+
+.lcwordle-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.lcwordle-title {
+    font-size: 75px;
+    font-family: 'Superchibby';
+    text-shadow: none;
+    color: white;
+    text-shadow: 4px 4px 0px #000;
+    text-decoration: none;
+
+    transition: text-shadow 0.2s ease 0s, transform 0.2s ease 0s;
+}
+
+.lcwordle-title:hover {
+    text-shadow: 7px 7px 0px #000;
+    transform: translateY(-5px);
+}
+
+@media (max-width: 800px) {
+    .lcwordle {
+        flex-direction: column;
+    }
+    .lcwordle-image {
+        width: 150px;
+    }
+    .lcwordle-title {
+        font-size: 50px;
     }
 }
