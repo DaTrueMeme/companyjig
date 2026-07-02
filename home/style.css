@@ -306,6 +306,9 @@ body {
 }
 
 @media (max-width: 800px) {
+    body {
+        background-size: 75% auto;
+    }
     .video-container .video-message {
         font-size: 75px;
     }

@@ -290,6 +290,10 @@ body {
 }
 
 @media (max-width: 800px) {
+    body {
+        background-size: 75% auto;
+    }
+
     .content h1 {
         font-size: 50px;
     }
