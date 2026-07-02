@@ -2,6 +2,8 @@
 
 let dailyItem;
 
+const RESET_HOUR_UTC = 0;
+
 async function loadItems() {
     const response = await fetch("items.json");
     const data = await response.json();
@@ -20,16 +22,17 @@ async function loadItems() {
     initGame();
 }
 
+function getGameDayKey() {
+    const startDate = new Date(Date.UTC(2026, 0, 7, RESET_HOUR_UTC, 0, 0));
+    const now = new Date();
+    return Math.floor((now - startDate) / (1000 * 60 * 60 * 24));
+}
+
 function getDailyItem() {
-    const startDate = new Date("2026-01-07");
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-
-    const daysSinceStart = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
-    const index = daysSinceStart % ITEMS.length;
-
+    const index = getGameDayKey() % ITEMS.length;
     return ITEMS[index];
 }
+
 
 
 let guessesRemaining = 5;
@@ -51,16 +54,23 @@ function initGame() {
 }
 
 function startCountdown() {
-    updateCountdown(); // run once immediately so it's not blank for a second
+    updateCountdown();
     setInterval(updateCountdown, 1000);
 }
 
 function updateCountdown() {
-    if (!gameOver) return;
     const now = new Date();
 
-    const nextReset = new Date();
-    nextReset.setHours(24, 0, 0, 0);
+    const nextReset = new Date(Date.UTC(
+        now.getUTCFullYear(),
+        now.getUTCMonth(),
+        now.getUTCDate(),
+        RESET_HOUR_UTC, 0, 0
+    ));
+
+    if (nextReset <= now) {
+        nextReset.setUTCDate(nextReset.getUTCDate() + 1);
+    }
 
     const msRemaining = nextReset - now;
 
@@ -200,9 +210,8 @@ function showMessage(text) {
 }
 
 function saveProgress(guessResults) {
-  const todayKey = new Date().toDateString();
   localStorage.setItem("wordle-progress", JSON.stringify({
-    date: todayKey,
+    gameDay: getGameDayKey(),
     guesses: guessResults,
     guessesRemaining: guessesRemaining,
     gameOver: gameOver
@@ -211,7 +220,7 @@ function saveProgress(guessResults) {
 
 function loadProgress() {
   const saved = JSON.parse(localStorage.getItem("wordle-progress"));
-  if (saved && saved.date === new Date().toDateString()) {
+  if (saved && saved.gameDay === getGameDayKey()) {
     return saved;
   }
   return null;
