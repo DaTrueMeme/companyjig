@@ -1,10 +1,10 @@
 @font-face {
     font-family: 'Superchibby';
-    src: url('../assets/font/SuperChiby.ttf') format('truetype');
+    src: url('/assets/font/SuperChiby.ttf') format('truetype');
 }
 @font-face {
     font-family: 'Montserrat';
-    src: url('../assets/font/MontserratRegular.ttf') format('truetype');
+    src: url('/assets/font/MontserratRegular.ttf') format('truetype');
 }
 
 * {
@@ -16,7 +16,7 @@
 nav {
     background-color: #b3c0f5;
 
-    background-image: url('../assets/adamance.jpg');
+    background-image: url('/assets/adamance.jpg');
     background-repeat: cover;
     background-size: 100% auto;
 
@@ -176,7 +176,7 @@ footer {
     width: 100%;
     background-color: #b3c0f5;
 
-    background-image: url('../assets/adamance2.jpg');
+    background-image: url('/assets/adamance2.jpg');
     background-repeat: cover;
     background-size: 100% auto;
 
@@ -247,7 +247,7 @@ footer li img {
 
 body {
     background-color: #8aa1ff;
-    background-image: url("../assets/background.png");
+    background-image: url("/assets/background.png");
     background-size: 45% auto;
     color: white;
     font-family: 'Montserrat';
