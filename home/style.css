@@ -1,0 +1,399 @@
+@font-face {
+    font-family: 'Superchibby';
+    src: url('../assets/font/SuperChiby.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../assets/font/MontserratRegular.ttf') format('truetype');
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+/* Nav */
+nav {
+    background-color: #b3c0f5;
+
+    background-image: url('../assets/adamance.jpg');
+    background-repeat: cover;
+    background-size: 100% auto;
+
+    position: relative;
+    font-family: 'Superchibby';
+    box-shadow: 0px 5px 1px #40319b;
+
+    z-index: 10;
+}
+
+nav ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+}
+
+nav li {
+    height: 80px;
+    padding: 0 10px 0 10px;
+    border-radius: 10px;
+    list-style: none;
+
+    font-size: 25px;
+}
+
+nav li a {
+    height: 100%;
+    padding: 0 10px;
+
+    display: flex;
+    align-items: center;
+
+    text-decoration: none;
+    letter-spacing: 0px;
+    color: white;
+    text-shadow: 0px 3px 0px #000;
+    gap: 8px;
+
+    transition: letter-spacing 0.2s ease;
+}
+
+nav li a:hover {
+    letter-spacing: 2px;
+}
+
+nav li img {
+    height: 35%;
+    filter: drop-shadow(2px 2px 0px #00000050);
+
+    transition: height 0.2s ease;
+}
+
+nav li img:hover {
+    height: 40%;
+}
+
+nav li .logo {
+    height: 75%;
+}
+
+nav li .logo:hover {
+    height: 80%;
+}
+
+.nav-left,
+.nav-center,
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+
+.nav {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+
+    z-index: 10;
+
+    max-width: 0;
+    opacity: 0;
+    margin-left: 0;
+
+    transition:
+        max-width 0.3s ease,
+        opacity 0.2s ease,
+        margin-left 0.3s ease;
+}
+
+nav .update-button {
+    position: absolute;
+    left: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    text-decoration: none;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 250px;
+    z-index: 999;
+    background-color: rgba(138, 161, 255, 0.5);
+    backdrop-filter: blur(10px);
+    box-shadow: 10px 0px 10px rgba(0, 0, 0, 0.50);
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.sidebar li {
+    width: 100%;
+}
+
+.sidebar a {
+    width: 100%;
+}
+
+.menu-button {
+    display: none;
+}
+
+.nav-title {
+    display: none;
+}
+
+@media (max-width: 800px) {
+    .hideOnMobile {
+        display: none;
+    }
+
+    .menu-button {
+        display: block;
+    }
+    .nav-title {
+        display: block;
+    }
+}
+
+@media (max-width: 400px) {
+    .sidebar {
+        width: 100%;
+    }
+}
+
+/* Footer */
+
+footer {
+    /* position: fixed; */
+    margin-top: 20px;
+    bottom: 0;
+    width: 100%;
+    background-color: #b3c0f5;
+
+    background-image: url('../assets/adamance2.jpg');
+    background-repeat: cover;
+    background-size: 100% auto;
+
+    font-family: 'Superchibby';
+    box-shadow: 0px -5px 1px #40319b;
+
+    z-index: 10;
+}
+
+footer ul {
+    width: 100%;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer li {
+    height: 30px;
+    padding: 0 10px 0 10px;
+    border-radius: 10px;
+
+    font-size: 15px;
+}
+
+footer li a, footer .footer_p {
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+
+    text-decoration: none;
+    letter-spacing: 0px;
+    color: white;
+    text-shadow: 0px 2px 0px #000;
+    gap: 8px;
+}
+
+footer li img {
+    height: 75%;
+}
+
+.footer {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+
+    z-index: 10;
+
+    max-width: 0;
+    opacity: 0;
+    margin-left: 0;
+
+    transition:
+        max-width 0.3s ease,
+        opacity 0.2s ease,
+        margin-left 0.3s ease;
+}
+
+@media (max-width: 800px) {
+    footer .footer_p {
+        font-size: 10px;
+        text-shadow: 0px 1px 0px #000;
+    }
+}
+
+/* Contents */
+
+.video-container {
+    position: relative;
+    width: 100%;
+    height: 90vh;
+    overflow: hidden;
+    background-color: black;
+    box-shadow: 0px 5px 1px #40319b;
+}
+
+.video-container video {
+    position: absolute;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    filter: blur(5px);
+    transform: scale(2) translateX(-25%);
+    overflow: hidden;
+    transform-origin: center center;
+    z-index: 0;
+}
+
+.video-container .message {
+    z-index: 0;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 10px 5px;
+}
+
+.video-container .message a {
+    text-decoration: none;
+    color: white;
+    font-size: 15px;
+    padding: 5px 10px;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.50);
+    backdrop-filter: blur(10px);
+}
+
+.video-container .video-message {
+    font-size: 150px;
+    z-index: 1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Superchibby';
+    text-shadow: 8px 8px 0px #000;
+    text-align: center;
+}
+
+body {
+    background-color: #8aa1ff;
+    background-image: url("../assets/background.png");
+    background-size: 45% auto;
+    color: white;
+    font-family: 'Montserrat';
+}
+
+@media (max-width: 800px) {
+    .video-container .video-message {
+        font-size: 75px;
+    }
+}
+
+.content {
+    padding: 30px;
+    margin: 0 10px 0 10px;
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content .mike_schooney {
+    width: 100px;
+}
+
+.content .logo {
+    width: 150px;
+    padding-right: 50px;
+    transform: translateY(30px);
+}
+
+.content h1 {
+    font-size: 50px;
+    font-family: 'Superchibby';
+    text-shadow: none;
+    text-shadow: 0px 4px 0px #000;
+}
+
+.content .title {
+    font-size: 150px;
+    text-shadow: 8px 8px 0px #000;
+}
+
+.content .message {
+    padding-top: 50px;
+}
+
+.content .message p {
+    text-shadow: none;
+    font-size: 25px;
+}
+
+.content .message a {
+    color: #ffffff;
+    font-weight: bold;
+    text-shadow: 0px 3px 0px #000;
+    text-decoration: none;
+}
+
+.content .message ul {
+    padding-top: 10px;
+    text-align: center;
+    font-size: 40px;
+    line-height: 30px;
+    list-style-position: inside;
+}
+
+.content .message ul li {
+    color: #fb9100;
+    font-family: 'Superchibby';
+    text-shadow: 0px 4px 0px #880833;
+    padding-top: 10px;
+}
+
+@media (max-width: 800px) {
+    .content .mike_schooney {
+        width: 50px;
+    }
+    .content h1 {
+        font-size: 30px;
+    }
+    .content .logo {
+        width: 75px;
+        padding-right: 10px;
+        transform: translateY(25px);
+    }
+    .content .title {
+        font-size: 45px;
+    }
+
+    .content .message p {
+        font-size: 20px;
+    }
+    .content .message ul {
+        font-size: 30px;
+    }
+}

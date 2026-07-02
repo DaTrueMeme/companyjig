@@ -1,0 +1,514 @@
+{
+    "Airhorn": {
+        "average_value": 61,
+        "weight": 0,
+        "conductivity": false,
+        "two_handed": false,
+        "interactable": true,
+        "most_common": "March"
+    },
+    "Big Bolt": {
+        "average_value": 25,
+        "weight": 19,
+        "conductivity": true,
+        "two_handed": false,
+        "interactable": false,
+        "most_common": "Experimentation"
+    },
+    "Bone": {
+        "average_value": 10,
+        "weight": 0,
+        "conductivity": false,
+        "two_handed": false,
+        "interactable": false,
+        "most_common": "Dine"
+    },
+    "Bottles": {
+        "average_value": 49,
+        "weight": 19,
+        "conductivity": false,
+        "two_handed": true,
+        "interactable": false,
+        "most_common": "Assurance"
+    },
+    "Brass Bell": {
+        "average_value": 63,
+        "weight": 24,
+        "conductivity": true,
+        "two_handed": false,
+        "interactable": false,
+        "most_common": "Rend"
+    },
+    "Candy": {
+        "average_value": 21,
+        "weight": 11,
+        "conductivity": false,
+        "two_handed": false,
+        "interactable": false,
+        "most_common": "Rend"
+    },
+    "Cash Register": {
+        "average_value": 119,
+        "weight": 84,
+        "conductivity": true,
+        "two_handed": true,
+        "interactable": true,
+        "most_common": "Artifice"
+    },
+    "Chemical Jug": {
+        "average_value": 57,
+        "weight": 32,
+        "conductivity": false,
+        "two_handed": true,
+        "interactable": false,
+        "most_common": "Vow"
+    },
+    "Clock": {
+        "average_value": 49,
+        "weight": 26,
+        "conductivity": false,
+        "two_handed": false,
+        "interactable": false,
+        "most_common": "Rend"
+    },
+    "Clown Horn": {
+        "average_value": 61,
+        "weight": 0,
+        "conductivity": true,
+        "two_handed": false,
+        "interactable": true,
+        "most_common": "March"
+    },
+    "Coffee Mug": {
+        "average_value": 45,
+        "weight": 5,
+        "conductivity": false,
+        "two_handed": false,
+        "interactable": false,
+        "most_common": "Rend"
+    },
+    "Comedy": {
+        "average_value": 39,
+        "weight": 11,
+        "conductivity": false,
+        "two_handed": false,
+        "interactable": true,
+        "most_common": "Rend"
+    },
+    "Control Pad": {
+        "average_value": 49,
+        "weight": 16,
+        "conductivity": true,
+        "two_handed": true,
+        "interactable": false,
+        "most_common": "Offense"
+    },
+    "Cookie Pan": {
+        "average_value": 25,
+        "weight": 16,
+        "conductivity": true,
+        "two_handed": false,
+        "interactable": false,
+        "most_common": "Embrion"
+    },
+    "Dust Pan": {
+        "average_value": 21,
+        "weight": 0,
+        "conductivity": false,
+        "two_handed": false,
+        "interactable": false,
+        "most_common": "Experimentation"
+    },
+    "Ear": {
+        "average_value": 7,
+        "weight": 0,
+        "conductivity": false,
+        "two_handed": false,
+        "interactable": false,
+        "most_common": "Dine"
+    },
+    "Easter Egg": {
+        "average_value": 37,
+        "weight": 3,
+        "conductivity": false,
+        "two_handed": false,
+        "interactable": true,
+        "most_common": "March"
+    },
+    "Egg Beater": {
+        "average_value": 27,
+        "weight": 11,
+        "conductivity": true,
+        "two_handed": false,
+        "interactable": false,
+        "most_common": "Vow"
+    },
+    "Fancy Lamp": {
+        "average_value": 93,
+        "weight": 21,
+        "conductivity": true,
+        "two_handed": true,
+        "interactable": false,
+        "most_common": "Rend"
+    },
+    "Flask": {
+        "average_value": 29,
+        "weight": 19,
+        "conductivity": false,
+        "two_handed": false,
+        "interactable": false,
+        "most_common": "Experimentation"
+    },
+    "Foot": {
+        "average_value": 13,
+        "weight": 0,
+        "conductivity": false,
+        "two_handed": false,
+        "interactable": false,
+        "most_common": "Dine"
+    },
+    "Garbage Lid": {
+        "average_value": 31,
+        "weight": 0,
+        "conductivity": true,
+        "two_handed": true,
+        "interactable": false,
+        "most_common": "Offense"
+    },
+    "Gift Box": {
+        "average_value": 19,
+        "weight": 19,
+        "conductivity": false,
+        "two_handed": false,
+        "interactable": true,
+        "most_common": "Experimentation"
+    },
+    "Gold Bar": {
+        "average_value": 155,
+        "weight": 77,
+        "conductivity": true,
+        "two_handed": false,
+        "interactable": false,
+        "most_common": "Artifice"
+    },
+    "Golden Cup": {
+        "average_value": 59,
+        "weight": 16,
+        "conductivity": false,
+        "two_handed": false,
+        "interactable": false,
+        "most_common": "Artifice"
+    },
+    "Hair Brush": {
+        "average_value": 21,
+        "weight": 11,
+        "conductivity": false,
+        "two_handed": false,
+        "interactable": false,
+        "most_common": "Adamance"
+    },
+    "Hairdryer": {
+        "average_value": 79,
+        "weight": 7,
+        "conductivity": false,
+        "two_handed": false,
+        "interactable": true,
+        "most_common": "Artifice"
+    },
+    "Hand": {
+        "average_value": 7,
+        "weight": 0,
+        "conductivity": false,
+        "two_handed": false,
+        "interactable": false,
+        "most_common": "Dine"
+    },
+    "Heart": {
+        "average_value": 61,
+        "weight": 31,
+        "conductivity": false,
+        "two_handed": true,
+        "interactable": false,
+        "most_common": "Dine"
+    },
+    "Homemade Flashbang": {
+        "average_value": 19,
+        "weight": 5,
+        "conductivity": false,
+        "two_handed": false,
+        "interactable": true,
+        "most_common": "Experimentation"
+    },
+    "Jar Of Pickles": {
+        "average_value": 45,
+        "weight": 16,
+        "conductivity": false,
+        "two_handed": false,
+        "interactable": false,
+        "most_common": "Vow"
+    },
+    "Knee": {
+        "average_value": 12,
+        "weight": 5,
+        "conductivity": false,
+        "two_handed": false,
+        "interactable": false,
+        "most_common": "Dine"
+    },
+    "Large Axle": {
+        "average_value": 45,
+        "weight": 16,
+        "conductivity": true,
+        "two_handed": true,
+        "interactable": false,
+        "most_common": "Experimentation"
+    },
+    "Laser Pointer": {
+        "average_value": 65,
+        "weight": 0,
+        "conductivity": false,
+        "two_handed": false,
+        "interactable": true,
+        "most_common": "Offense"
+    },
+    "Magic 7 Ball": {
+        "average_value": 53,
+        "weight": 16,
+        "conductivity": false,
+        "two_handed": false,
+        "interactable": false,
+        "most_common": "Artifice"
+    },
+    "Magnifying Glass": {
+        "average_value": 51,
+        "weight": 11,
+        "conductivity": false,
+        "two_handed": false,
+        "interactable": false,
+        "most_common": "Rend"
+    },
+    "Old Phone": {
+        "average_value": 55,
+        "weight": 5,
+        "conductivity": false,
+        "two_handed": false,
+        "interactable": false,
+        "most_common": "Titan"
+    },
+    "Painting": {
+        "average_value": 91,
+        "weight": 31,
+        "conductivity": false,
+        "two_handed": true,
+        "interactable": false,
+        "most_common": "Rend"
+    },
+    "Perfume Bottle": {
+        "average_value": 75,
+        "weight": 0,
+        "conductivity": false,
+        "two_handed": false,
+        "interactable": false,
+        "most_common": "Rend"
+    },
+    "Pill Bottle": {
+        "average_value": 27,
+        "weight": 0,
+        "conductivity": false,
+        "two_handed": false,
+        "interactable": false,
+        "most_common": "Titan"
+    },
+    "Plastic Cup": {
+        "average_value": 23,
+        "weight": 0,
+        "conductivity": false,
+        "two_handed": false,
+        "interactable": false,
+        "most_common": "March"
+    },
+    "Plastic Fish": {
+        "average_value": 33,
+        "weight": 0,
+        "conductivity": false,
+        "two_handed": false,
+        "interactable": false,
+        "most_common": "Adamance"
+    },
+    "Red Soda": {
+        "average_value": 53,
+        "weight": 7,
+        "conductivity": true,
+        "two_handed": false,
+        "interactable": false,
+        "most_common": "Titan"
+    },
+    "Remote": {
+        "average_value": 33,
+        "weight": 0,
+        "conductivity": false,
+        "two_handed": false,
+        "interactable": true,
+        "most_common": "Embrion"
+    },
+    "Ribcage": {
+        "average_value": 16,
+        "weight": 0,
+        "conductivity": false,
+        "two_handed": true,
+        "interactable": false,
+        "most_common": "Dine"
+    },
+    "Robot Toy": {
+        "average_value": 71,
+        "weight": 21,
+        "conductivity": true,
+        "two_handed": false,
+        "interactable": false,
+        "most_common": "Embrion"
+    },
+    "Rubber Ducky": {
+        "average_value": 51,
+        "weight": 0,
+        "conductivity": false,
+        "two_handed": false,
+        "interactable": false,
+        "most_common": "Artifice"
+    },
+    "Soccer Ball": {
+        "average_value": 57,
+        "weight": 19,
+        "conductivity": false,
+        "two_handed": true,
+        "interactable": false,
+        "most_common": "Embrion"
+    },
+    "Steering Wheel": {
+        "average_value": 23,
+        "weight": 16,
+        "conductivity": false,
+        "two_handed": false,
+        "interactable": false,
+        "most_common": "Experimentation"
+    },
+    "Stop Sign": {
+        "average_value": 35,
+        "weight": 24,
+        "conductivity": true,
+        "two_handed": false,
+        "interactable": true,
+        "most_common": "Adamance"
+    },
+    "Tattered Metal Sheet": {
+        "average_value": 15,
+        "weight": 26,
+        "conductivity": true,
+        "two_handed": false,
+        "interactable": false,
+        "most_common": "Experimentation"
+    },
+    "Tea Kettle": {
+        "average_value": 43,
+        "weight": 21,
+        "conductivity": true,
+        "two_handed": false,
+        "interactable": false,
+        "most_common": "Vow"
+    },
+    "Teeth": {
+        "average_value": 71,
+        "weight": 0,
+        "conductivity": false,
+        "two_handed": false,
+        "interactable": false,
+        "most_common": "Rend"
+    },
+    "Toilet Paper": {
+        "average_value": 73,
+        "weight": 5,
+        "conductivity": false,
+        "two_handed": true,
+        "interactable": false,
+        "most_common": "Embrion"
+    },
+    "Tongue": {
+        "average_value": 9,
+        "weight": 0,
+        "conductivity": false,
+        "two_handed": false,
+        "interactable": false,
+        "most_common": "Dine"
+    },
+    "Toothpaste": {
+        "average_value": 31,
+        "weight": 0,
+        "conductivity": false,
+        "two_handed": false,
+        "interactable": false,
+        "most_common": "Titan"
+    },
+    "Toy Cube": {
+        "average_value": 33,
+        "weight": 0,
+        "conductivity": false,
+        "two_handed": false,
+        "interactable": false,
+        "most_common": "Assurance"
+    },
+    "Toy Train": {
+        "average_value": 67,
+        "weight": 21,
+        "conductivity": false,
+        "two_handed": false,
+        "interactable": false,
+        "most_common": "Rend"
+    },
+    "Tragedy": {
+        "average_value": 39,
+        "weight": 11,
+        "conductivity": false,
+        "two_handed": false,
+        "interactable": true,
+        "most_common": "Titan"
+    },
+    "V-Type Engine": {
+        "average_value": 37,
+        "weight": 16,
+        "conductivity": true,
+        "two_handed": true,
+        "interactable": false,
+        "most_common": "Experimentation"
+    },
+    "Wedding Ring": {
+        "average_value": 65,
+        "weight": 16,
+        "conductivity": true,
+        "two_handed": false,
+        "interactable": false,
+        "most_common": "Artifice"
+    },
+    "Whoopie Cushion": {
+        "average_value": 21,
+        "weight": 0,
+        "conductivity": false,
+        "two_handed": false,
+        "interactable": false,
+        "most_common": "Vow"
+    },
+    "Yield Sign": {
+        "average_value": 27,
+        "weight": 42,
+        "conductivity": true,
+        "two_handed": false,
+        "interactable": true,
+        "most_common": "Offense"
+    },
+    "Zed Dog": {
+        "average_value": 99,
+        "weight": 0,
+        "conductivity": true,
+        "two_handed": false,
+        "interactable": false,
+        "most_common": "Rend"
+    }
+}

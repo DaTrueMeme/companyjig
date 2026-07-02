@@ -1,0 +1,398 @@
+@font-face {
+    font-family: 'Superchibby';
+    src: url('../assets/font/SuperChiby.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../assets/font/MontserratRegular.ttf') format('truetype');
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+/* Nav */
+nav {
+    background-color: #b3c0f5;
+
+    background-image: url('../assets/adamance.jpg');
+    background-repeat: cover;
+    background-size: 100% auto;
+
+    position: relative;
+    font-family: 'Superchibby';
+    box-shadow: 0px 5px 1px #40319b;
+
+    z-index: 10;
+}
+
+nav ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+}
+
+nav li {
+    height: 80px;
+    padding: 0 10px 0 10px;
+    border-radius: 10px;
+    list-style: none;
+
+    font-size: 25px;
+}
+
+nav li a {
+    height: 100%;
+    padding: 0 10px;
+
+    display: flex;
+    align-items: center;
+
+    text-decoration: none;
+    letter-spacing: 0px;
+    color: white;
+    text-shadow: 0px 3px 0px #000;
+    gap: 8px;
+
+    transition: letter-spacing 0.2s ease;
+}
+
+nav li a:hover {
+    letter-spacing: 2px;
+}
+
+nav li img {
+    display: block;
+    height: 35%;
+    filter: drop-shadow(2px 2px 0px #00000050);
+
+    transition: height 0.2s ease;
+}
+
+nav li img:hover {
+    height: 40%;
+}
+
+nav li .logo {
+    height: 75%;
+}
+
+nav li .logo:hover {
+    height: 80%;
+}
+
+.nav-left,
+.nav-center,
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.nav {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+
+    z-index: 10;
+
+    max-width: 0;
+    opacity: 0;
+    margin-left: 0;
+
+    transition:
+        max-width 0.3s ease,
+        opacity 0.2s ease,
+        margin-left 0.3s ease;
+}
+
+nav .update-button {
+    position: absolute;
+    left: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    text-decoration: none;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 250px;
+    z-index: 999;
+    background-color: rgba(138, 161, 255, 0.5);
+    backdrop-filter: blur(10px);
+    box-shadow: 10px 0px 10px rgba(0, 0, 0, 0.50);
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.sidebar li {
+    width: 100%;
+}
+
+.sidebar a {
+    width: 100%;
+}
+
+.menu-button {
+    display: none;
+}
+
+.nav-title {
+    display: none;
+}
+
+@media (max-width: 800px) {
+    .hideOnMobile {
+        display: none;
+    }
+
+    .menu-button {
+        display: block;
+    }
+    .nav-title {
+        display: block;
+    }
+}
+
+@media (max-width: 400px) {
+    .sidebar {
+        width: 100%;
+    }
+}
+
+/* Footer */
+
+footer {
+    /* position: fixed; */
+    margin-top: 20px;
+    bottom: 0;
+    width: 100%;
+    background-color: #b3c0f5;
+
+    background-image: url('../assets/adamance2.jpg');
+    background-repeat: cover;
+    background-size: 100% auto;
+
+    font-family: 'Superchibby';
+    box-shadow: 0px -5px 1px #40319b;
+
+    z-index: 10;
+}
+
+footer ul {
+    width: 100%;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer li {
+    height: 30px;
+    padding: 0 10px 0 10px;
+    border-radius: 10px;
+
+    font-size: 15px;
+}
+
+footer li a, footer .footer_p {
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+
+    text-decoration: none;
+    letter-spacing: 0px;
+    color: white;
+    text-shadow: 0px 2px 0px #000;
+    gap: 8px;
+}
+
+footer li img {
+    height: 75%;
+}
+
+.footer {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+
+    z-index: 10;
+
+    max-width: 0;
+    opacity: 0;
+    margin-left: 0;
+
+    transition:
+        max-width 0.3s ease,
+        opacity 0.2s ease,
+        margin-left 0.3s ease;
+}
+
+@media (max-width: 800px) {
+    footer .footer_p {
+        font-size: 10px;
+        text-shadow: 0px 1px 0px #000;
+    }
+}
+
+/* content */
+
+body {
+    background-color: #8aa1ff;
+    background-image: url("../assets/background.png");
+    background-size: 45% auto;
+    color: white;
+    font-family: 'Montserrat';
+}
+
+.content {
+    padding-top: 50px;
+    text-align: center;
+}
+
+.content h1 {
+    font-size: 100px;
+    font-family: 'Superchibby';
+    text-shadow: 8px 8px 0px #000;
+}
+
+.content img {
+    height: 75px;
+    padding-left: 15px;
+    transform: translateY(5px);
+}
+
+.content p {
+    padding-top: 10px;
+    font-size: 25px;
+}
+
+.content .funnyhaha {
+    font-size: 10px;
+    color: #b3c0f5;
+}
+
+.content .note {
+    font-size: 15px;
+    color: #b3c0f5;
+}
+
+.content .note a {
+    color: #b3c0f5;
+}
+
+@media (max-width: 800px) {
+    .content h1 {
+        font-size: 50px;
+    }
+
+    .content p {
+        font-size: 15px;
+    }
+
+    .content .note {
+        font-size: 12px;
+        color: #b3c0f5;
+    }
+
+    .content .maneater {
+        height: 45px;
+        padding-left: 10px;
+    }
+}
+
+/* Game */
+
+.correct { background-color: #4caf50; color: white; }
+.incorrect { background-color: #444; color: white; }
+.higher { background-color: #ff9800; color: white; }
+.lower { background-color: #ff9800; color: white; }
+
+#game {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 90vh;
+}
+
+#game #guessInput {
+    background-color: #b3c0f5;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    color: white;
+    text-shadow: 0px 1px 1px #000;
+    width: 50%;
+}
+
+#game #guessButton {
+    background-color: #b3c0f5;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    color: white;
+    text-shadow: 0px 1px 1px #000;
+}
+
+#game #guessButton:hover {
+    background-color: #4c5da3;
+    cursor: pointer;
+}
+
+#game #guessCount {
+    margin: 10px;
+}
+
+#game table {
+    border-collapse: collapse;
+    width: 50%;
+    margin: 0 auto;
+}
+
+#game table tr th {
+    text-shadow: 0px 1px 1px #000;
+    border-bottom: 1px solid #ddd;
+    padding: 8px;
+}
+
+#game table tr td {
+    text-shadow: 0px 1px 1px #000;
+    border-bottom: 1px solid #ddd;
+    padding: 8px;
+}
+
+#game #message {
+    padding-top: 10px;
+}
+
+@media (max-width: 800px) {
+    #game {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 90vh;
+    }
+
+    #game table {
+        font-size: 10px;
+    }
+
+    #game table tr td {
+        font-size: 10px;
+        padding: 0px;
+    }
+}
