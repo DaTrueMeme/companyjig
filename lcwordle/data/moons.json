@@ -1,0 +1,74 @@
+{
+    "Experimentation": {
+        "price": 0,
+        "risk_level": "D",
+        "max_indoor_power": 4,
+        "max_outdoor_power": 8
+    },
+    "Assurance": {
+        "price": 0,
+        "risk_level": "C",
+        "max_indoor_power": 6,
+        "max_outdoor_power": 8
+    },
+    "Vow": {
+        "price": 0,
+        "risk_level": "C",
+        "max_indoor_power": 7,
+        "max_outdoor_power": 6
+    },
+    "Offense": {
+        "price": 0,
+        "risk_level": "B",
+        "max_indoor_power": 12,
+        "max_outdoor_power": 8
+    },
+    "March": {
+        "price": 0,
+        "risk_level": "B",
+        "max_indoor_power": 14,
+        "max_outdoor_power": 12
+    },
+    "Adamance": {
+        "price": 0,
+        "risk_level": "B",
+        "max_indoor_power": 13,
+        "max_outdoor_power": 11
+    },
+    "Rend": {
+        "price": 550,
+        "risk_level": "A",
+        "max_indoor_power": 10,
+        "max_outdoor_power": 6
+    },
+    "Dine": {
+        "price": 600,
+        "risk_level": "S",
+        "max_indoor_power": 10,
+        "max_outdoor_power": 9
+    },
+    "Titan": {
+        "price": 700,
+        "risk_level": "S+",
+        "max_indoor_power": 18,
+        "max_outdoor_power": 7
+    },
+    "Artifice": {
+        "price": 1500,
+        "risk_level": "S++",
+        "max_indoor_power": 13,
+        "max_outdoor_power": 13
+    },
+    "Embrion": {
+        "price": 150,
+        "risk_level": "S",
+        "max_indoor_power": 8,
+        "max_outdoor_power": 70
+    },
+    "Liquidation": {
+        "price": 700,
+        "risk_level": "S++",
+        "max_indoor_power": 13,
+        "max_outdoor_power": 13
+    }
+}

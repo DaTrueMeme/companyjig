@@ -14,35 +14,38 @@
 
     <div class="content">
         <h1>Lethal Company Wordle<img class="maneater" src="/assets/ManeaterHappy.png"></h1>
-        <p>Try to guess todays Lethal Company scrap item!</p>
+        <p>Try to guess todays Lethal Company scrap item, <br>or try one of the different modes!</p>
         <p class="funnyhaha">and no, the Maneater does not count as an item...</p>
-        <p class="note">Resets daily at 00:00 UTC. Inspired by <a href="https://lcwordle.com/" target="_blank">lcworld.com</a></p>
+        <p class="note">Resets daily at 00:00 UTC. Every mode saves its progress.<br>Inspired by <a href="https://lcwordle.com/" target="_blank">lcworld.com</a></p>
     </div>
 
     <div id="game">
-        <input type="text" id="guessInput" list="itemList" placeholder="Guess an item..." />
-        <datalist id="itemList"></datalist>
-        <button id="guessButton">Guess</button>
+        <div class="modeSelectDiv">
+            <label for="modeSelect">Current mode (saves):</label>
+            <select id="modeSelect"></select>
+        </div>
+
+        <div class="inputDiv">
+            <input type="text" id="guessInput" list="itemList" placeholder="Guess an item..." />
+            <datalist id="itemList"></datalist>
+            <button id="guessButton">Guess</button>
+        </div>
 
         <div id="guessCount">Guesses remaining: 5</div>
 
         <table id="resultsTable">
             <thead>
-            <tr>
-                <th>Item</th>
-                <th>Avg Cost</th>
-                <th>Weight</th>
-                <th>Two-Handed</th>
-                <th>Conductive</th>
-                <th>Interactable</th>
-                <th>Moon</th>
-            </tr>
+                <tr id="tableHeaderRow"></tr>
             </thead>
             <tbody id="resultsBody"></tbody>
         </table>
 
         <div id="message"></div>
         <div id="nextReset"></div>
+    </div>
+
+    <div class="disclaimer">
+        <p class="disclaimer-message">Are we missing an entry? Something broken? Let us know on our <a href="https://discord.companyjig.com" target="_blank">Discord</a>.</p>
     </div>
 
     <div id="footer-container"></div>

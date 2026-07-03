@@ -1,0 +1,258 @@
+{
+    "Backwater Gunkfish": {
+        "health": 5,
+        "power_level": 0.5,
+        "max_spawned": 6,
+        "hostile": true,
+        "stunnable": true,
+        "most_common": "March"
+    },
+    "Barber": {
+        "health": -1,
+        "power_level": 1,
+        "max_spawned": 1,
+        "hostile": true,
+        "stunnable": true,
+        "most_common": "Embrion"
+    },
+    "Bracken": {
+        "health": 5,
+        "power_level": 3,
+        "max_spawned": 1,
+        "hostile": true,
+        "stunnable": true,
+        "most_common": "Vow"
+    },
+    "Bunker Spider": {
+        "health": 5,
+        "power_level": 2,
+        "max_spawned": 1,
+        "hostile": true,
+        "stunnable": true,
+        "most_common": "Experimentation"
+    },
+    "Butler": {
+        "health": 8,
+        "power_level": 2,
+        "max_spawned": 7,
+        "hostile": true,
+        "stunnable": true,
+        "most_common": "Dine"
+    },
+    "Cadaver Growth": {
+        "health": -1,
+        "power_level": 2,
+        "max_spawned": 1,
+        "hostile": true,
+        "stunnable": false,
+        "most_common": "Adamance"
+    },
+    "Cadaver Bloom": {
+        "health": 4,
+        "power_level": 3,
+        "max_spawned": 8,
+        "hostile": true,
+        "stunnable": true,
+        "most_common": "Adamance"
+    },
+    "Coil-Head": {
+        "health": -1,
+        "power_level": 1,
+        "max_spawned": 5,
+        "hostile": true,
+        "stunnable": true,
+        "most_common": "Offense"
+    },
+    "Ghost Girl": {
+        "health": -1,
+        "power_level": 2,
+        "max_spawned": 1,
+        "hostile": true,
+        "stunnable": false,
+        "most_common": "Rend"
+    },
+    "Hoarding Bug": {
+        "health": 3,
+        "power_level": 1,
+        "max_spawned": 8,
+        "hostile": true,
+        "stunnable": true,
+        "most_common": "Embrion"
+    },
+    "Hygrodere": {
+        "health": -1,
+        "power_level": 1,
+        "max_spawned": 2,
+        "hostile": true,
+        "stunnable": true,
+        "most_common": "Offense"
+    },
+    "Jester": {
+        "health": -1,
+        "power_level": 3,
+        "max_spawned": 1,
+        "hostile": true,
+        "stunnable": true,
+        "most_common": "Rend"
+    },
+    "Maneater": {
+        "health": 5,
+        "power_level": 2,
+        "max_spawned": 1,
+        "hostile": true,
+        "stunnable": true,
+        "most_common": "Vow"
+    },
+    "Masked": {
+        "health": 4,
+        "power_level": 1,
+        "max_spawned": 10,
+        "hostile": true,
+        "stunnable": true,
+        "most_common": "Artifice"
+    },
+    "Mask Hornets": {
+        "health": -1,
+        "power_level": 2,
+        "max_spawned": 7,
+        "hostile": true,
+        "stunnable": false,
+        "most_common": "Dine"
+    },
+    "Nutcracker": {
+        "health": 5,
+        "power_level": 1,
+        "max_spawned": 10,
+        "hostile": true,
+        "stunnable": true,
+        "most_common": "Rend"
+    },
+    "Snare Flea": {
+        "health": 3,
+        "power_level": 1,
+        "max_spawned": 4,
+        "hostile": true,
+        "stunnable": true,
+        "most_common": "Assurance"
+    },
+    "Spore Lizard": {
+        "health": -1,
+        "power_level": 1,
+        "max_spawned": 2,
+        "hostile": true,
+        "stunnable": true,
+        "most_common": "Embrion"
+    },
+    "Thumper": {
+        "health": 4,
+        "power_level": 3,
+        "max_spawned": 4,
+        "hostile": true,
+        "stunnable": true,
+        "most_common": "Offense"
+    },
+    "Baboon Hawk": {
+        "health": 4,
+        "power_level": 0.5,
+        "max_spawned": 15,
+        "hostile": true,
+        "stunnable": true,
+        "most_common": "Adamance"
+    },
+    "Earth Leviathan": {
+        "health": -1,
+        "power_level": 2,
+        "max_spawned": 3,
+        "hostile": true,
+        "stunnable": false,
+        "most_common": "Assurance"
+    },
+    "Eyeless Dog": {
+        "health": 12,
+        "power_level": 2,
+        "max_spawned": 8,
+        "hostile": true,
+        "stunnable": true,
+        "most_common": "Titan"
+    },
+    "Feiopar": {
+        "health": 4,
+        "power_level": 2,
+        "max_spawned": 6,
+        "hostile": true,
+        "stunnable": true,
+        "most_common": "Vow"
+    },
+   "Forest Keeper": {
+        "health": 38,
+        "power_level": 3,
+        "max_spawned": 3,
+        "hostile": true,
+        "stunnable": true,
+        "most_common": "Dine"
+    }, 
+    "Old Bird": {
+        "health": -1,
+        "power_level": 3,
+        "max_spawned": 20,
+        "hostile": true,
+        "stunnable": true,
+        "most_common": "Embrion"
+    },
+    "Circuit Bees": {
+        "health": -1,
+        "power_level": 1,
+        "max_spawned": 6,
+        "hostile": true,
+        "stunnable": false,
+        "most_common": "March"
+    },
+    "Giant Sapsucker": {
+        "health": 28,
+        "power_level": 4,
+        "max_spawned": 1,
+        "hostile": true,
+        "stunnable": true,
+        "most_common": "Vow"
+    },
+    "Kidnapper Fox": {
+        "health": 7,
+        "power_level": 1,
+        "max_spawned": 1,
+        "hostile": true,
+        "stunnable": true,
+        "most_common": "None"
+    },
+    "Manticoil": {
+        "health": 2,
+        "power_level": 1,
+        "max_spawned": 16,
+        "hostile": false,
+        "stunnable": true,
+        "most_common": "Offense"
+    },
+    "Roaming Locusts": {
+        "health": -1,
+        "power_level": 1,
+        "max_spawned": 5,
+        "hostile": false,
+        "stunnable": false,
+        "most_common": "Experimentation"
+    },
+    "Tulip Snake": {
+        "health": 1,
+        "power_level": 0.5,
+        "max_spawned": 12,
+        "hostile": true,
+        "stunnable": false,
+        "most_common": "Adamance"
+    },
+    "Vain Shroud": {
+        "health": -1,
+        "power_level": 0,
+        "max_spawned": 20,
+        "hostile": false,
+        "stunnable": false,
+        "most_common": "None"
+    }
+}

@@ -1,56 +1,145 @@
-// DEV RESET CMD: localStorage.removeItem("wordle-progress");
-
-let dailyItem;
+// DEV RESET CMD (clears every mode's saved progress):
+// Object.keys(localStorage).filter(k => k.startsWith("wordle-progress-")).forEach(k => localStorage.removeItem(k));
 
 const RESET_HOUR_UTC = 0;
+const START_DATE_UTC = Date.UTC(2026, 0, 7, RESET_HOUR_UTC, 0, 0);
 
-async function loadItems() {
-    const response = await fetch("items.json");
-    const data = await response.json();
+const GAME_MODES = {
+    scrapItems: {
+        label: "Scrap Items",
+        dataFile: "data/scrap_items.json",
+        imageFolder: "images/scrap_items/",
+        maxGuesses: 5,
+        categories: [
+            {key: "avgCost", jsonKey: "average_value", label: "Avg Cost", type: "number", unit: "▮"},
+            {key: "weight", jsonKey: "weight", label: "Weight", type: "number", unit: "lb"},
+            {key: "twoHanded", jsonKey: "two_handed", label: "Two-Handed", type: "exact"},
+            {key: "conductive", jsonKey: "conductivity", label: "Conductive", type: "exact"},
+            {key: "interactable", jsonKey: "interactable", label: "Interactable", type: "exact"},
+            {key: "moon", jsonKey: "most_common", label: "Moon", type: "exact"}
+        ]
+    },
+    moons: {
+        label: "Moons",
+        dataFile: "data/moons.json",
+        imageFolder: "images/moons/",
+        maxGuesses: 3,
+        categories: [
+            {key: "price", jsonKey: "price", label: "Price", type: "number", unit: "▮"},
+            {key: "riskLevel", jsonKey: "risk_level", label: "Risk Level", type: "exact"},
+            {key: "maxIndoorPower", jsonKey: "max_indoor_power", label: "Max Indoor Power", type: "number", unit: ""},
+            {key: "maxOutdoorPower", jsonKey: "max_outdoor_power", label: "Max Outdoor Power", type: "number", unit: ""},
+        ]
+    },
+    monsters: {
+        label: "Monsters",
+        dataFile: "data/monsters.json",
+        imageFolder: "images/monsters/",
+        maxGuesses: 5,
+        categories: [
+            {key: "health", jsonKey: "health", label: "Health", type: "number", unit: "HP"},
+            {key: "powerLevel", jsonKey: "power_level", label: "Power Level", type: "number"},
+            {key: "maxSpawned", jsonKey: "max_spawned", label: "Max Spawned", type: "number"},
+            {key: "hostile", jsonKey: "hostile", label: "Hostile", type: "exact"},
+            {key: "canBeStunned", jsonKey: "stunnable", label: "Stunnable", type: "exact"},
+            {key: "moon", jsonKey: "most_common", label: "Favorite Moon", type: "exact"}
+        ]
+    } 
+};
 
-    ITEMS = Object.entries(data).map(([name, stats]) => ({
-        name: name,
-        avgCost: stats.average_value,
-        weight: stats.weight,
-        twoHanded: stats.two_handed,
-        conductive: stats.conductivity,
-        interactable: stats.interactable,
-        moon: stats.most_common
-    }));
-
-    dailyItem = getDailyItem();
-    initGame();
-}
-
-function getGameDayKey() {
-    const startDate = new Date(Date.UTC(2026, 0, 7, RESET_HOUR_UTC, 0, 0));
-    const now = new Date();
-    return Math.floor((now - startDate) / (1000 * 60 * 60 * 24));
-}
-
-function getDailyItem() {
-    const index = getGameDayKey() % ITEMS.length;
-    return ITEMS[index];
-}
-
-
-
-let guessesRemaining = 5;
+let currentModeKey = null;
+let currentMode = null;
+let ITEMS = [];
+let dailyItem;
+let guessesRemaining = 0; // set properly by startMode() based on the active mode's maxGuesses
 let gameOver = false;
 let guessHistory = [];
 
-function initGame() {
+function initApp() {
+    populateModeSelect();
+
+    document.getElementById("modeSelect").addEventListener("change", (e) => {
+        startMode(e.target.value);
+    });
+
+    document.getElementById("guessButton").addEventListener("click", handleGuess);
+
+    startCountdown();
+
+    const savedMode = localStorage.getItem("selected-mode");
+    const startingMode = (savedMode && GAME_MODES[savedMode]) ? savedMode : Object.keys(GAME_MODES)[0];
+    document.getElementById("modeSelect").value = startingMode;
+    startMode(startingMode);
+}
+
+function populateModeSelect() {
+    const select = document.getElementById("modeSelect");
+    Object.entries(GAME_MODES).forEach(([key, mode]) => {
+        const option = document.createElement("option");
+        option.value = key;
+        option.textContent = mode.label;
+        select.appendChild(option);
+    });
+}
+
+async function startMode(modeKey) {
+    currentModeKey = modeKey;
+    currentMode = GAME_MODES[modeKey];
+    localStorage.setItem("selected-mode", modeKey);
+
+    guessesRemaining = currentMode.maxGuesses;
+    gameOver = false;
+    guessHistory = [];
+    document.getElementById("resultsBody").innerHTML = "";
+    document.getElementById("guessButton").disabled = false;
+    document.getElementById("guessCount").textContent = `Guesses remaining: ${guessesRemaining}`;
+    showMessage("");
+
+    renderTableHeader();
+    await loadItems();
+    populateDatalist();
+    dailyItem = getDailyItem();
+    restoreProgress();
+}
+
+async function loadItems() {
+    const response = await fetch(currentMode.dataFile);
+    const data = await response.json();
+
+    ITEMS = Object.entries(data).map(([name, stats]) => {
+        const item = { name: name };
+        currentMode.categories.forEach(cat => {
+            item[cat.key] = stats[cat.jsonKey];
+        });
+        return item;
+    });
+}
+
+function populateDatalist() {
     const datalist = document.getElementById("itemList");
+    datalist.innerHTML = "";
     ITEMS.forEach(item => {
         const option = document.createElement("option");
         option.value = item.name;
         datalist.appendChild(option);
     });
+}
 
-    document.getElementById("guessButton").addEventListener("click", handleGuess);
+function renderTableHeader() {
+    const headerRow = document.getElementById("tableHeaderRow");
+    const imageHeader = currentMode.imageFolder ? "<th>Item</th>" : "";
+    headerRow.innerHTML = "<th></th>" + imageHeader +
+        currentMode.categories.map(cat => `<th>${cat.label}</th>`).join("");
+}
 
-    restoreProgress();
-    startCountdown();
+function getGameDayKey() {
+    const now = new Date();
+    return Math.floor((now - START_DATE_UTC) / (1000 * 60 * 60 * 24));
+}
+
+function getDailyItem() {
+    const index = getGameDayKey() % ITEMS.length;
+    return ITEMS[index];
 }
 
 function startCountdown() {
@@ -84,57 +173,25 @@ function updateCountdown() {
         `Next item in ${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
 }
 
-function restoreProgress() {
-    const saved = loadProgress();
-    if (!saved) return;
-
-    saved.guesses.forEach(entry => {
-        renderGuessRow(entry.result, entry.guess);
-    });
-
-    guessesRemaining = saved.guessesRemaining;
-    gameOver = saved.gameOver;
-    guessHistory = saved.guesses;
-
-    document.getElementById("guessCount").textContent = `Guesses remaining: ${guessesRemaining}`;
-
-    if (gameOver) {
-        document.getElementById("guessButton").disabled = true;
-        const lastEntry = saved.guesses[saved.guesses.length - 1];
-        const won = lastEntry && lastEntry.result.isCorrect;
-        const msg = won
-            ? `Correct! The item was ${dailyItem.name}.`
-            : `Out of guesses. The item was ${dailyItem.name}.`;
-        showMessage(msg);
+function compareValue(type, guessVal, answerVal) {
+    if (type === "number") {
+        if (guessVal === answerVal) return "correct";
+        return guessVal > answerVal ? "lower" : "higher";
     }
+    return guessVal === answerVal ? "correct" : "incorrect";
 }
-
-loadItems();
 
 function compareGuess(guess) {
+    const categories = {};
+    currentMode.categories.forEach(cat => {
+        categories[cat.key] = compareValue(cat.type, guess[cat.key], dailyItem[cat.key]);
+    });
+
     return {
         name: guess.name,
-        avgCost: compareNumber(guess.avgCost, dailyItem.avgCost),
-        weight: compareNumber(guess.weight, dailyItem.weight),
-        twoHanded: compareBoolean(guess.twoHanded, dailyItem.twoHanded),
-        conductive: compareBoolean(guess.conductive, dailyItem.conductive),
-        interactable: compareBoolean(guess.interactable, dailyItem.interactable),
-        moon: compareMoon(guess.moon, dailyItem.moon),
+        categories: categories,
         isCorrect: guess.name === dailyItem.name
-    }
-}
-
-function compareNumber(guessVal, answerVal) {
-    if (guessVal === answerVal) return "correct";
-    return guessVal > answerVal ? "lower" : "higher";
-}
-
-function compareBoolean(guessVal, answerVal) {
-    return guessVal === answerVal ? "correct" : "incorrect";
-}
-
-function compareMoon(guessVal, answerVal) {
-    return guessVal === answerVal ? "correct" : "incorrect";
+    };
 }
 
 function handleGuess() {
@@ -166,62 +223,112 @@ function handleGuess() {
         endGame(false);
     }
 
-    saveProgress(guessHistory);
+    saveProgress();
 
     input.value = "";
     input.focus();
 }
 
 function renderGuessRow(result, guess) {
-  const row = document.createElement("tr");
+    const row = document.createElement("tr");
 
-  row.innerHTML = `
-    <td>${result.name}</td>
-    <td class="${result.avgCost}">${arrowFor(result.avgCost)} ${guess.avgCost}▮</td>
-    <td class="${result.weight}">${arrowFor(result.weight)} ${guess.weight}lb</td>
-    <td class="${result.twoHanded}">${result.twoHanded === "correct" ? "✓" : "✗"} ${guess.twoHanded}</td>
-    <td class="${result.conductive}">${result.conductive === "correct" ? "✓" : "✗"} ${guess.conductive}</td>
-    <td class="${result.interactable}">${result.interactable === "correct" ? "✓" : "✗"} ${guess.interactable}</td>
-    <td class="${result.moon}">${result.moon === "correct" ? "✓" : "✗"} ${guess.moon}</td>
-  `;
+    let html = imageCell(guess.name);
+    html += `<td>${result.name}</td>`;
 
-  document.getElementById("resultsBody").prepend(row);
+    currentMode.categories.forEach(cat => {
+        const status = result.categories[cat.key];
+        const value = guess[cat.key];
+        html += `<td class="${status}">${formatCell(cat, status, value)}</td>`;
+    });
+
+    row.innerHTML = html;
+    document.getElementById("resultsBody").prepend(row);
+}
+
+function imageCell(itemName) {
+    if (!currentMode.imageFolder) return "";
+
+    const src = `${currentMode.imageFolder}${encodeURIComponent(itemName)}.png`;
+    const fallback = `${currentMode.imageFolder}missing.png`;
+
+    return `<td><img src="${src}" alt="${itemName}" class="item-image"
+        onerror="this.onerror=null; this.src='${fallback}';"></td>`;
+}
+
+function formatCell(category, status, value) {
+    if (category.type === "number") {
+        return `${arrowFor(status)} ${value}${category.unit || ""}`;
+    }
+    const icon = status === "correct" ? "✓" : "✗";
+    return `${icon} ${value}`;
 }
 
 function arrowFor(status) {
-  if (status === "correct") return "✓";
-  if (status === "higher") return "▲";
-  if (status === "lower") return "▼";
+    if (status === "correct") return "✓";
+    if (status === "higher") return "▲";
+    if (status === "lower") return "▼";
+    return "";
 }
 
 function endGame(won) {
-  gameOver = true;
-  document.getElementById("guessButton").disabled = true;
+    gameOver = true;
+    document.getElementById("guessButton").disabled = true;
 
-  const msg = won
-    ? `Correct! The item was ${dailyItem.name}.`
-    : `Out of guesses. The item was ${dailyItem.name}.`;
+    const msg = won
+        ? `Correct! The item was ${dailyItem.name}.`
+        : `Out of guesses. The item was ${dailyItem.name}.`;
 
-  showMessage(msg);
+    showMessage(msg);
 }
 
 function showMessage(text) {
-  document.getElementById("message").textContent = text;
+    document.getElementById("message").textContent = text;
 }
 
-function saveProgress(guessResults) {
-  localStorage.setItem("wordle-progress", JSON.stringify({
-    gameDay: getGameDayKey(),
-    guesses: guessResults,
-    guessesRemaining: guessesRemaining,
-    gameOver: gameOver
-  }));
+function progressKey() {
+    return `wordle-progress-${currentModeKey}`;
+}
+
+function saveProgress() {
+    localStorage.setItem(progressKey(), JSON.stringify({
+        gameDay: getGameDayKey(),
+        guesses: guessHistory,
+        guessesRemaining: guessesRemaining,
+        gameOver: gameOver
+    }));
 }
 
 function loadProgress() {
-  const saved = JSON.parse(localStorage.getItem("wordle-progress"));
-  if (saved && saved.gameDay === getGameDayKey()) {
-    return saved;
-  }
-  return null;
+    const saved = JSON.parse(localStorage.getItem(progressKey()));
+    if (saved && saved.gameDay === getGameDayKey()) {
+        return saved;
+    }
+    return null;
 }
+
+function restoreProgress() {
+    const saved = loadProgress();
+    if (!saved) return;
+
+    saved.guesses.forEach(entry => {
+        renderGuessRow(entry.result, entry.guess);
+    });
+
+    guessesRemaining = saved.guessesRemaining;
+    gameOver = saved.gameOver;
+    guessHistory = saved.guesses;
+
+    document.getElementById("guessCount").textContent = `Guesses remaining: ${guessesRemaining}`;
+
+    if (gameOver) {
+        document.getElementById("guessButton").disabled = true;
+        const lastEntry = saved.guesses[saved.guesses.length - 1];
+        const won = lastEntry && lastEntry.result.isCorrect;
+        const msg = won
+            ? `Correct! The item was ${dailyItem.name}.`
+            : `Out of guesses. The item was ${dailyItem.name}.`;
+        showMessage(msg);
+    }
+}
+
+initApp();
