@@ -8,7 +8,7 @@
         "most_common": "March"
     },
     "Barber": {
-        "health": -1,
+        "health": 999,
         "power_level": 1,
         "max_spawned": 1,
         "hostile": true,
@@ -40,7 +40,7 @@
         "most_common": "Dine"
     },
     "Cadaver Growth": {
-        "health": -1,
+        "health": 999,
         "power_level": 2,
         "max_spawned": 1,
         "hostile": true,
@@ -56,7 +56,7 @@
         "most_common": "Adamance"
     },
     "Coil-Head": {
-        "health": -1,
+        "health": 999,
         "power_level": 1,
         "max_spawned": 5,
         "hostile": true,
@@ -64,7 +64,7 @@
         "most_common": "Offense"
     },
     "Ghost Girl": {
-        "health": -1,
+        "health": 999,
         "power_level": 2,
         "max_spawned": 1,
         "hostile": true,
@@ -80,7 +80,7 @@
         "most_common": "Embrion"
     },
     "Hygrodere": {
-        "health": -1,
+        "health": 999,
         "power_level": 1,
         "max_spawned": 2,
         "hostile": true,
@@ -88,7 +88,7 @@
         "most_common": "Offense"
     },
     "Jester": {
-        "health": -1,
+        "health": 999,
         "power_level": 3,
         "max_spawned": 1,
         "hostile": true,
@@ -112,7 +112,7 @@
         "most_common": "Artifice"
     },
     "Mask Hornets": {
-        "health": -1,
+        "health": 999,
         "power_level": 2,
         "max_spawned": 7,
         "hostile": true,
@@ -136,7 +136,7 @@
         "most_common": "Assurance"
     },
     "Spore Lizard": {
-        "health": -1,
+        "health": 999,
         "power_level": 1,
         "max_spawned": 2,
         "hostile": true,
@@ -160,7 +160,7 @@
         "most_common": "Adamance"
     },
     "Earth Leviathan": {
-        "health": -1,
+        "health": 999,
         "power_level": 2,
         "max_spawned": 3,
         "hostile": true,
@@ -192,7 +192,7 @@
         "most_common": "Dine"
     }, 
     "Old Bird": {
-        "health": -1,
+        "health": 999,
         "power_level": 3,
         "max_spawned": 20,
         "hostile": true,
@@ -200,7 +200,7 @@
         "most_common": "Embrion"
     },
     "Circuit Bees": {
-        "health": -1,
+        "health": 999,
         "power_level": 1,
         "max_spawned": 6,
         "hostile": true,
@@ -232,7 +232,7 @@
         "most_common": "Offense"
     },
     "Roaming Locusts": {
-        "health": -1,
+        "health": 999,
         "power_level": 1,
         "max_spawned": 5,
         "hostile": false,
@@ -248,7 +248,7 @@
         "most_common": "Adamance"
     },
     "Vain Shroud": {
-        "health": -1,
+        "health": 999,
         "power_level": 0,
         "max_spawned": 20,
         "hostile": false,
