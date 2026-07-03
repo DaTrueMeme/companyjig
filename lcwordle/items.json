@@ -510,5 +510,53 @@
         "two_handed": false,
         "interactable": false,
         "most_common": "Rend"
+    },
+    "Key": {
+        "average_value": 3,
+        "weight": 0,
+        "conductivity": true,
+        "two_handed": false,
+        "interactable": true,
+        "most_common": "Gordion"
+    },
+    "Beehive": {
+        "average_value": 95,
+        "weight": 0,
+        "conductivity": true,
+        "two_handed": true,
+        "interactable": false,
+        "most_common": "March"
+    },
+    "Apparatus": {
+        "average_value": 80,
+        "weight": 31,
+        "conductivity": true,
+        "two_handed": true,
+        "interactable": false,
+        "most_common": "Experimentation"
+    },
+    "Double Barrel": {
+        "average_value": 60,
+        "weight": 16,
+        "conductivity": false,
+        "two_handed": false,
+        "interactable": true,
+        "most_common": "Rend"
+    },
+    "Kitchen Knife": {
+        "average_value": 35,
+        "weight": 0,
+        "conductivity": true,
+        "two_handed": false,
+        "interactable": true,
+        "most_common": "Adamance"
+    },
+    "Egg": {
+        "average_value": 119,
+        "weight": 19,
+        "conductivity": false,
+        "two_handed": true,
+        "interactable": false,
+        "most_common": "Vow"
     }
 }
