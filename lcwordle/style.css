@@ -19,6 +19,7 @@ nav {
     background-image: url('/assets/adamance.jpg');
     background-repeat: cover;
     background-size: 100% auto;
+    background-attachment: fixed;
 
     position: relative;
     font-family: 'Superchibby';
@@ -179,6 +180,7 @@ footer {
     background-image: url('/assets/adamance2.jpg');
     background-repeat: cover;
     background-size: 100% auto;
+    background-attachment: fixed;
 
     font-family: 'Superchibby';
     box-shadow: 0px -5px 1px #40319b;
@@ -325,7 +327,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 90vh;
+    height: 100vh;
 }
 
 #game #modeSelect {
@@ -337,6 +339,45 @@ body {
     color: white;
     text-shadow: 0px 1px 1px #000;
     box-shadow: 5px 5px 0px #00000050;
+
+    transition:
+        background-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+#game #modeSelect:hover {
+    background-color: #cfd6f3;
+    box-shadow: 8px 8px 3px #00000050;
+    transform: translate(-3px, -3px);
+}
+
+#game #endlessToggle {
+    box-shadow: 3px 3px 0px #00000050;
+}
+
+#game #newRoundButton {
+    background-color: #b3c0f5;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    color: white;
+    text-shadow: 0px 1px 1px #000;
+    box-shadow: 5px 5px 0px #00000050;
+
+    transition:
+        background-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+#game #newRoundButton:hover {
+    background-color: #cfd6f3;
+    cursor: pointer;
+
+    box-shadow: 8px 8px 3px #00000050;
+    transform: translate(-3px, -3px);
 }
 
 #game .inputDiv {
@@ -352,8 +393,19 @@ body {
     color: white;
     text-shadow: 0px 1px 1px #000;
     width: 50%;
-
+    
     box-shadow: 5px 5px 0px #00000050;
+    
+    transition:
+        background-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+#game #guessInput:hover {
+    background-color: #cfd6f3;
+    box-shadow: 8px 8px 3px #00000050;
+    transform: translate(-3px, -3px);
 }
 
 #game #guessButton {
@@ -366,7 +418,10 @@ body {
     text-shadow: 0px 1px 1px #000;
     box-shadow: 5px 5px 0px #00000050;
 
-    transition: background-color 0.2s ease 0s, box-shadow 0.2s ease 0s, transform 0.2s ease 0s;
+    transition:
+        background-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
 }
 
 #game #guessButton:hover {
@@ -379,6 +434,10 @@ body {
 
 #game #guessCount {
     margin: 10px;
+}
+
+#game #nextReset {
+    padding-bottom: 10px;
 }
 
 #game table {
@@ -398,6 +457,16 @@ body {
     border-bottom: 1px solid #ddd;
     padding: 8px;
     backdrop-filter: blur(1px);
+
+    transition:
+        filter 0.2s ease,
+        font-size 0.2s ease;
+}
+
+#game table tr td:hover {
+    cursor: default;
+    filter: brightness(1.2);
+    font-size: 18px;
 }
 
 #game #message {
@@ -408,6 +477,27 @@ body {
     max-width: 60px;
     max-height: 60px;
     object-fit: contain;
+
+    transition: transform 0.2s ease;
+}
+
+.item-image:hover {
+    transform: rotate(-10deg) scale(1.2);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.35s ease-out;
 }
 
 @media (max-width: 800px) {
@@ -418,6 +508,10 @@ body {
         align-items: center;
         justify-content: center;
         height: 90vh;
+    }
+
+    #game .inputDiv {
+        width: 100%;
     }
 
     #game table {

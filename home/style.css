@@ -19,6 +19,7 @@ nav {
     background-image: url('/assets/adamance.jpg');
     background-repeat: cover;
     background-size: 100% auto;
+    background-attachment: fixed;
 
     position: relative;
     font-family: 'Superchibby';
@@ -179,6 +180,7 @@ footer {
     background-image: url('/assets/adamance2.jpg');
     background-repeat: cover;
     background-size: 100% auto;
+    background-attachment: fixed;
 
     font-family: 'Superchibby';
     box-shadow: 0px -5px 1px #40319b;

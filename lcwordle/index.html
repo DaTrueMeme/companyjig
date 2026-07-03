@@ -16,13 +16,18 @@
         <h1>Lethal Company Wordle<img class="maneater" src="/assets/ManeaterHappy.png"></h1>
         <p>Try to guess todays Lethal Company scrap item, <br>or try one of the different modes!</p>
         <p class="funnyhaha">and no, the Maneater does not count as an item...</p>
-        <p class="note">Resets daily at 00:00 UTC. Every mode saves its progress.<br>Inspired by <a href="https://lcwordle.com/" target="_blank">lcwordle.com</a></p>
+        <p class="note">Resets daily at 00:00 UTC. Every mode saves its progress (except endless).<br>Inspired by <a href="https://lcwordle.com/" target="_blank">lcwordle.com</a></p>
     </div>
 
     <div id="game">
         <div class="modeSelectDiv">
             <label for="modeSelect">Current mode (saves):</label>
             <select id="modeSelect"></select>
+        </div>
+
+        <div class="endlessToggleDiv">
+            <label><input type="checkbox" id="endlessToggle"> Endless Mode</label>
+            <button id="newRoundButton" style="display:none;">New Round</button>
         </div>
 
         <div class="inputDiv">
@@ -32,8 +37,9 @@
         </div>
 
         <div id="guessCount">Guesses remaining: 5</div>
+        <div id="nextReset"></div>
 
-        <table id="resultsTable">
+        <table id="resultsTable" style="display:none;">
             <thead>
                 <tr id="tableHeaderRow"></tr>
             </thead>
@@ -41,7 +47,6 @@
         </table>
 
         <div id="message"></div>
-        <div id="nextReset"></div>
     </div>
 
     <div class="disclaimer">

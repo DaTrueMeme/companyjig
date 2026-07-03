@@ -51,9 +51,10 @@ let currentModeKey = null;
 let currentMode = null;
 let ITEMS = [];
 let dailyItem;
-let guessesRemaining = 0; // set properly by startMode() based on the active mode's maxGuesses
+let guessesRemaining = 0;
 let gameOver = false;
 let guessHistory = [];
+let endlessMode = false;
 
 function initApp() {
     populateModeSelect();
@@ -62,9 +63,20 @@ function initApp() {
         startMode(e.target.value);
     });
 
+    document.getElementById("endlessToggle").addEventListener("change", (e) => {
+        endlessMode = e.target.checked;
+        localStorage.setItem("endless-mode", endlessMode ? "true" : "false");
+        startRound();
+    });
+
+    document.getElementById("newRoundButton").addEventListener("click", startRound);
+
     document.getElementById("guessButton").addEventListener("click", handleGuess);
 
     startCountdown();
+
+    endlessMode = localStorage.getItem("endless-mode") === "true";
+    document.getElementById("endlessToggle").checked = endlessMode;
 
     const savedMode = localStorage.getItem("selected-mode");
     const startingMode = (savedMode && GAME_MODES[savedMode]) ? savedMode : Object.keys(GAME_MODES)[0];
@@ -87,19 +99,36 @@ async function startMode(modeKey) {
     currentMode = GAME_MODES[modeKey];
     localStorage.setItem("selected-mode", modeKey);
 
+    renderTableHeader();
+    await loadItems();
+    populateDatalist();
+
+    startRound();
+}
+
+function startRound() {
     guessesRemaining = currentMode.maxGuesses;
     gameOver = false;
     guessHistory = [];
     document.getElementById("resultsBody").innerHTML = "";
     document.getElementById("guessButton").disabled = false;
     document.getElementById("guessCount").textContent = `Guesses remaining: ${guessesRemaining}`;
+    document.getElementById("newRoundButton").style.display = endlessMode ? "inline-block" : "none";
     showMessage("");
 
-    renderTableHeader();
-    await loadItems();
-    populateDatalist();
-    dailyItem = getDailyItem();
-    restoreProgress();
+    dailyItem = pickItem();
+
+    if (!endlessMode) {
+        restoreProgress();
+    }
+}
+
+function pickItem() {
+    if (endlessMode) {
+        const randomIndex = Math.floor(Math.random() * ITEMS.length);
+        return ITEMS[randomIndex];
+    }
+    return getDailyItem();
 }
 
 async function loadItems() {
@@ -127,7 +156,7 @@ function populateDatalist() {
 
 function renderTableHeader() {
     const headerRow = document.getElementById("tableHeaderRow");
-    const imageHeader = currentMode.imageFolder ? "<th>Item</th>" : "";
+    const imageHeader = currentMode.imageFolder ? "<th>Entry</th>" : "";
     headerRow.innerHTML = "<th></th>" + imageHeader +
         currentMode.categories.map(cat => `<th>${cat.label}</th>`).join("");
 }
@@ -148,6 +177,11 @@ function startCountdown() {
 }
 
 function updateCountdown() {
+    if (endlessMode) {
+        document.getElementById("nextReset").textContent = "Endless Mode; no daily limit";
+        return;
+    }
+
     const now = new Date();
 
     const nextReset = new Date(Date.UTC(
@@ -170,7 +204,7 @@ function updateCountdown() {
     const pad = n => String(n).padStart(2, "0");
 
     document.getElementById("nextReset").textContent =
-        `Next item in ${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+        `Next update in ${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
 }
 
 function compareValue(type, guessVal, answerVal) {
@@ -196,6 +230,8 @@ function compareGuess(guess) {
 
 function handleGuess() {
     if (gameOver) return;
+
+    document.getElementById("resultsTable").style.display = "table";
 
     const input = document.getElementById("guessInput");
     const guessName = input.value.trim();
@@ -231,6 +267,7 @@ function handleGuess() {
 
 function renderGuessRow(result, guess) {
     const row = document.createElement("tr");
+    row.classList.add("fade-in");
 
     let html = imageCell(guess.name);
     html += `<td>${result.name}</td>`;
@@ -275,8 +312,8 @@ function endGame(won) {
     document.getElementById("guessButton").disabled = true;
 
     const msg = won
-        ? `Correct! The item was ${dailyItem.name}.`
-        : `Out of guesses. The item was ${dailyItem.name}.`;
+        ? `Correct! The entry was ${dailyItem.name}.`
+        : `Out of guesses. The entry was ${dailyItem.name}.`;
 
     showMessage(msg);
 }
@@ -290,6 +327,8 @@ function progressKey() {
 }
 
 function saveProgress() {
+    if (endlessMode) return;
+
     localStorage.setItem(progressKey(), JSON.stringify({
         gameDay: getGameDayKey(),
         guesses: guessHistory,
@@ -301,6 +340,7 @@ function saveProgress() {
 function loadProgress() {
     const saved = JSON.parse(localStorage.getItem(progressKey()));
     if (saved && saved.gameDay === getGameDayKey()) {
+        document.getElementById("resultsTable").style.display = "table";
         return saved;
     }
     return null;
@@ -325,8 +365,8 @@ function restoreProgress() {
         const lastEntry = saved.guesses[saved.guesses.length - 1];
         const won = lastEntry && lastEntry.result.isCorrect;
         const msg = won
-            ? `Correct! The item was ${dailyItem.name}.`
-            : `Out of guesses. The item was ${dailyItem.name}.`;
+            ? `Correct! The entry was ${dailyItem.name}.`
+            : `Out of guesses. The entry was ${dailyItem.name}.`;
         showMessage(msg);
     }
 }
