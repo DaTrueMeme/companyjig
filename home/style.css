@@ -23,7 +23,7 @@ nav {
 
     position: relative;
     font-family: 'Superchibby';
-    box-shadow: 0px 5px 1px #40319b;
+    box-shadow: 0px 5px 1px #83605e;
 
     z-index: 10;
 }
@@ -303,6 +303,7 @@ body {
     background-color: #8aa1ff;
     background-image: url("/assets/background.png");
     background-size: 45% auto;
+
     color: white;
     font-family: 'Montserrat';
 }
@@ -415,6 +416,26 @@ hr {
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #332879, rgba(0, 0, 0, 0));
 }
 
+/* trailer */
+.trailer-embed {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    text-align: center;
+}
+
+.trailer {
+    box-shadow: 0px 8px 0px #fb9100, 0px 16px 0px #880833;
+    transition: box-shadow 0.2s ease 0s, transform 0.2s ease 0s;
+}
+
+.trailer:hover {
+    box-shadow: 0px 12px 0px #ffb349, 0px 24px 0px #8a2245;
+    transform: translateY(-8px);
+}
+
 /* lcwordle */
 
 .lcwordle {
@@ -431,6 +452,15 @@ hr {
     width: 250px;
     height: auto;
     border-radius: 10px;
+
+    transition:
+        filter 0.2s ease 0s,
+        transform 0.2s ease 0s;
+}
+
+.lcwordle-image:hover {
+    filter: drop-shadow(3px 5px 0px #00000050);
+    transform: rotate(-5deg) scale(1.1);
 }
 
 .lcwordle-text {

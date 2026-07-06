@@ -118,6 +118,8 @@ function startRound() {
 
     dailyItem = pickItem();
 
+    renderStreak(endlessMode ? loadEndlessStreak() : loadStreak().streak);
+
     if (!endlessMode) {
         restoreProgress();
     }
@@ -311,6 +313,12 @@ function endGame(won) {
     gameOver = true;
     document.getElementById("guessButton").disabled = true;
 
+    if (endlessMode) {
+        updateEndlessStreakAfterGame(won);
+    } else {
+        updateStreakAfterGame(won);
+    }
+
     const msg = won
         ? `Correct! The entry was ${dailyItem.name}.`
         : `Out of guesses. The entry was ${dailyItem.name}.`;
@@ -324,6 +332,63 @@ function showMessage(text) {
 
 function progressKey() {
     return `wordle-progress-${currentModeKey}`;
+}
+
+function streakKey() {
+    return `streak-${currentModeKey}`;
+}
+
+function loadStreak() {
+    const saved = JSON.parse(localStorage.getItem(streakKey()));
+    return saved || { streak: 0, lastPlayedGameDay: null };
+}
+
+function saveStreak(streakData) {
+    localStorage.setItem(streakKey(), JSON.stringify(streakData));
+}
+
+function renderStreak(streak) {
+    document.getElementById("streakDisplay").textContent = endlessMode
+        ? `🔥 Endless Streak: ${streak}`
+        : `🔥 Daily Streak: ${streak}`;
+}
+
+function endlessStreakKey() {
+    return `endless-streak-${currentModeKey}`;
+}
+
+function loadEndlessStreak() {
+    const saved = parseInt(localStorage.getItem(endlessStreakKey()), 10);
+    return isNaN(saved) ? 0 : saved;
+}
+
+function saveEndlessStreak(streak) {
+    localStorage.setItem(endlessStreakKey(), streak);
+}
+
+function updateEndlessStreakAfterGame(won) {
+    const updated = won ? loadEndlessStreak() + 1 : 0;
+    saveEndlessStreak(updated);
+    renderStreak(updated);
+}
+
+function updateStreakAfterGame(won) {
+    if (endlessMode) return;
+
+    const streakData = loadStreak();
+    const today = getGameDayKey();
+
+    if (won && streakData.lastPlayedGameDay === today - 1) {
+        streakData.streak += 1;
+    } else if (won) {
+        streakData.streak = 1;
+    } else {
+        streakData.streak = 0;
+    }
+
+    streakData.lastPlayedGameDay = today;
+    saveStreak(streakData);
+    renderStreak(streakData.streak);
 }
 
 function saveProgress() {

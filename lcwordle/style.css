@@ -23,7 +23,7 @@ nav {
 
     position: relative;
     font-family: 'Superchibby';
-    box-shadow: 0px 5px 1px #40319b;
+    box-shadow: 0px 5px 1px #83605e;
 
     z-index: 10;
 }
@@ -183,7 +183,7 @@ footer {
     background-attachment: fixed;
 
     font-family: 'Superchibby';
-    box-shadow: 0px -5px 1px #40319b;
+    box-shadow: 0px -5px 1px #942517;
 
     z-index: 10;
 }
@@ -251,6 +251,8 @@ body {
     background-color: #8aa1ff;
     background-image: url("/assets/background.png");
     background-size: 45% auto;
+    backdrop-filter: hue-rotate(110deg);
+
     color: white;
     font-family: 'Montserrat';
 }
@@ -279,16 +281,16 @@ body {
 
 .content .funnyhaha {
     font-size: 10px;
-    color: #b3c0f5;
+    color: #cfa8a6;
 }
 
 .content .note {
     font-size: 15px;
-    color: #b3c0f5;
+    color: #cfa8a6;
 }
 
 .content .note a {
-    color: #b3c0f5;
+    color: #cfa8a6;
 }
 
 @media (max-width: 800px) {
@@ -331,7 +333,7 @@ body {
 }
 
 #game #modeSelect {
-    background-color: #b3c0f5;
+    background-color: #cfa8a6;
     border: none;
     border-radius: 5px;
     padding: 10px;
@@ -347,7 +349,7 @@ body {
 }
 
 #game #modeSelect:hover {
-    background-color: #cfd6f3;
+    background-color: #f3cfcf;
     box-shadow: 8px 8px 3px #00000050;
     transform: translate(-3px, -3px);
     cursor: pointer;
@@ -358,7 +360,7 @@ body {
 }
 
 #game #newRoundButton {
-    background-color: #b3c0f5;
+    background-color: #cfa8a6;
     border: none;
     border-radius: 5px;
     padding: 10px;
@@ -374,7 +376,7 @@ body {
 }
 
 #game #newRoundButton:hover {
-    background-color: #cfd6f3;
+    background-color: #f3cfcf;
     cursor: pointer;
 
     box-shadow: 8px 8px 3px #00000050;
@@ -386,7 +388,7 @@ body {
 }
 
 #game #guessInput {
-    background-color: #b3c0f5;
+    background-color: #cfa8a6;
     border: none;
     border-radius: 5px;
     padding: 10px;
@@ -404,13 +406,13 @@ body {
 }
 
 #game #guessInput:hover {
-    background-color: #cfd6f3;
+    background-color: #f3cfcf;
     box-shadow: 8px 8px 3px #00000050;
     transform: translate(-3px, -3px);
 }
 
 #game #guessButton {
-    background-color: #b3c0f5;
+    background-color: #cfa8a6;
     border: none;
     border-radius: 5px;
     padding: 10px;
@@ -426,7 +428,7 @@ body {
 }
 
 #game #guessButton:hover {
-    background-color: #cfd6f3;
+    background-color: #f3cfcf;
     cursor: pointer;
 
     box-shadow: 8px 8px 3px #00000050;
@@ -445,6 +447,7 @@ body {
     border-collapse: collapse;
     width: 50%;
     margin: 0 auto;
+    box-shadow: 0px 8px 0px #b44743, 0px 16px 0px #b23530;
 }
 
 #game table tr th {
@@ -457,7 +460,8 @@ body {
     text-shadow: 0px 1px 1px #000;
     border-bottom: 1px solid #ddd;
     padding: 8px;
-    backdrop-filter: blur(1px);
+
+    text-transform: capitalize;
 
     transition:
         filter 0.2s ease,
@@ -531,12 +535,12 @@ body {
 
 .disclaimer-message {
     text-align: center;
-    color: #b3c0f5;
+    color: #cfa8a6;
     font-size: 15px;
 }
 
 .disclaimer-message a {
-    color: #b3c0f5;
+    color: #cfa8a6;
 }
 
 @media (max-width: 800px) {
