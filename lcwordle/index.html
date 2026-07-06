@@ -20,19 +20,33 @@
     </div>
 
     <div id="game">
-        <div class="modeSelectDiv">
-            <label for="modeSelect">Current mode (saved):</label>
-            <select id="modeSelect"></select>
+        <div class="endlessToggleDiv">
+            <label class="endlessToggleLabel toggle">
+                <input type="checkbox" id="endlessToggle">
+                <span class="track"><span class="thumb"></span></span>
+                Endless Mode
+            </label>
         </div>
 
-        <div class="endlessToggleDiv">
-            <label><input type="checkbox" id="endlessToggle"> Endless Mode</label>
-            <button id="newRoundButton" style="display:none;">New Round</button>
+        <div class="modeSelectDiv">
+            <label id="modeSelectLabel">Current mode (saved):</label>
+            <div class="dropdown" id="modeDropdown" data-open="false">
+                <button class="trigger" type="button" id="modeTrigger" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="modeSelectLabel modeLabel">
+                    <span id="modeLabel"></span>
+                    <svg class="chevron" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </button>
+                <div class="listbox" role="listbox" id="modeListbox" tabindex="-1" aria-labelledby="modeSelectLabel"></div>
+            </div>
         </div>
 
         <div class="inputDiv">
-            <input type="text" id="guessInput" list="itemList" placeholder="Guess an item..." />
-            <datalist id="itemList"></datalist>
+            <button id="newRoundButton" style="display:none;">New Round</button>
+            <div class="combobox" id="guessCombobox">
+                <input type="text" id="guessInput" role="combobox" aria-expanded="false"
+                    aria-controls="guessListbox" aria-autocomplete="list" autocomplete="off"
+                    placeholder="Guess an item..." />
+                <div class="listbox" role="listbox" id="guessListbox" tabindex="-1"></div>
+            </div>
             <button id="guessButton">Guess</button>
         </div>
 

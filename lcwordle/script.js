@@ -57,11 +57,8 @@ let guessHistory = [];
 let endlessMode = false;
 
 function initApp() {
-    populateModeSelect();
-
-    document.getElementById("modeSelect").addEventListener("change", (e) => {
-        startMode(e.target.value);
-    });
+    setupModeDropdown();
+    setupGuessCombobox();
 
     document.getElementById("endlessToggle").addEventListener("change", (e) => {
         endlessMode = e.target.checked;
@@ -80,18 +77,205 @@ function initApp() {
 
     const savedMode = localStorage.getItem("selected-mode");
     const startingMode = (savedMode && GAME_MODES[savedMode]) ? savedMode : Object.keys(GAME_MODES)[0];
-    document.getElementById("modeSelect").value = startingMode;
+    setModeDropdownValue(startingMode);
     startMode(startingMode);
 }
 
-function populateModeSelect() {
-    const select = document.getElementById("modeSelect");
+function openDropdownUI(container, trigger) {
+    container.dataset.open = "true";
+    trigger.setAttribute("aria-expanded", "true");
+}
+
+function closeDropdownUI(container, trigger, refocusTrigger = true) {
+    container.dataset.open = "false";
+    trigger.setAttribute("aria-expanded", "false");
+    if (refocusTrigger) trigger.focus();
+}
+
+function setActiveOption(listbox, optionEl) {
+    listbox.querySelectorAll(".option").forEach(o => o.classList.remove("active"));
+    if (optionEl) optionEl.classList.add("active");
+}
+function handleListboxKeydown(e, listbox, container, trigger, onSelect) {
+    const options = [...listbox.querySelectorAll(".option")];
+
+    if (e.key === "Escape") {
+        e.preventDefault();
+        closeDropdownUI(container, trigger);
+        return;
+    }
+    if (options.length === 0) return;
+
+    const activeIdx = options.findIndex(o => o.classList.contains("active"));
+
+    if (e.key === "ArrowDown") {
+        e.preventDefault();
+        setActiveOption(listbox, options[Math.min(activeIdx + 1, options.length - 1)]);
+    } else if (e.key === "ArrowUp") {
+        e.preventDefault();
+        setActiveOption(listbox, options[Math.max(activeIdx - 1, 0)]);
+    } else if (e.key === "Enter") {
+        if (activeIdx >= 0) {
+            e.preventDefault();
+            onSelect(options[activeIdx]);
+        }
+    }
+}
+
+/* ---------- Custom mode dropdown ---------- */
+
+function setupModeDropdown() {
+    const dropdown = document.getElementById("modeDropdown");
+    const trigger = document.getElementById("modeTrigger");
+    const listbox = document.getElementById("modeListbox");
+
     Object.entries(GAME_MODES).forEach(([key, mode]) => {
-        const option = document.createElement("option");
-        option.value = key;
+        const option = document.createElement("div");
+        option.className = "option";
+        option.setAttribute("role", "option");
+        option.setAttribute("aria-selected", "false");
+        option.dataset.value = key;
         option.textContent = mode.label;
-        select.appendChild(option);
+        option.addEventListener("click", () => selectMode(key));
+        listbox.appendChild(option);
     });
+
+    trigger.addEventListener("click", () => {
+        if (dropdown.dataset.open === "true") {
+            closeDropdownUI(dropdown, trigger);
+        } else {
+            openDropdownUI(dropdown, trigger);
+            const current = listbox.querySelector('[aria-selected="true"]') || listbox.querySelector(".option");
+            setActiveOption(listbox, current);
+        }
+    });
+
+    trigger.addEventListener("keydown", (e) => {
+        if (dropdown.dataset.open !== "true" && (e.key === "ArrowDown" || e.key === "Enter" || e.key === " ")) {
+            e.preventDefault();
+            openDropdownUI(dropdown, trigger);
+            const current = listbox.querySelector('[aria-selected="true"]') || listbox.querySelector(".option");
+            setActiveOption(listbox, current);
+        }
+    });
+
+    listbox.addEventListener("keydown", (e) => {
+        handleListboxKeydown(e, listbox, dropdown, trigger, (optionEl) => selectMode(optionEl.dataset.value));
+    });
+
+    document.addEventListener("click", (e) => {
+        if (!dropdown.contains(e.target)) {
+            dropdown.dataset.open = "false";
+            trigger.setAttribute("aria-expanded", "false");
+        }
+    });
+}
+
+function selectMode(key) {
+    setModeDropdownValue(key);
+    closeDropdownUI(document.getElementById("modeDropdown"), document.getElementById("modeTrigger"));
+    startMode(key);
+}
+
+function setModeDropdownValue(key) {
+    document.getElementById("modeLabel").textContent = GAME_MODES[key].label;
+    document.getElementById("modeListbox").querySelectorAll(".option").forEach(o => {
+        o.setAttribute("aria-selected", o.dataset.value === key ? "true" : "false");
+    });
+}
+
+/* ---------- Custom guess combobox (filterable, with item icons) ---------- */
+
+function setupGuessCombobox() {
+    const combobox = document.getElementById("guessCombobox");
+    const input = document.getElementById("guessInput");
+    const listbox = document.getElementById("guessListbox");
+
+    input.addEventListener("input", () => {
+        renderGuessOptions(input.value);
+        openDropdownUI(combobox, input);
+    });
+
+    input.addEventListener("focus", () => {
+        renderGuessOptions(input.value);
+        openDropdownUI(combobox, input);
+    });
+
+    input.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+            closeDropdownUI(combobox, input, false);
+            return;
+        }
+        if (combobox.dataset.open !== "true") return;
+        handleListboxKeydown(e, listbox, combobox, input, (optionEl) => selectGuessOption(optionEl));
+    });
+
+    document.addEventListener("click", (e) => {
+        if (!combobox.contains(e.target)) {
+            closeDropdownUI(combobox, input, false);
+        }
+    });
+}
+
+function renderGuessOptions(query) {
+    const listbox = document.getElementById("guessListbox");
+    listbox.innerHTML = "";
+
+    const trimmed = query.trim().toLowerCase();
+    const matches = (trimmed
+        ? ITEMS.filter(item => item.name.toLowerCase().includes(trimmed))
+        : ITEMS
+    ).slice(0, 20);
+
+    if (matches.length === 0) {
+        const empty = document.createElement("div");
+        empty.className = "option-empty";
+        empty.textContent = "No matching items";
+        listbox.appendChild(empty);
+        return;
+    }
+
+    matches.forEach(item => {
+        const option = document.createElement("div");
+        option.className = "option";
+        option.setAttribute("role", "option");
+        option.dataset.value = item.name;
+
+        if (currentMode.imageFolder) {
+            const paths = itemImagePaths(item.name);
+            const img = document.createElement("img");
+            img.src = paths.src;
+            img.alt = "";
+            img.onerror = function () {
+                this.onerror = null;
+                this.src = paths.fallback;
+            };
+            option.appendChild(img);
+        }
+
+        const text = document.createElement("span");
+        text.textContent = item.name;
+        option.appendChild(text);
+
+        option.addEventListener("click", () => selectGuessOption(option));
+
+        listbox.appendChild(option);
+    });
+
+    setActiveOption(listbox, listbox.querySelector(".option"));
+}
+
+function selectGuessOption(optionEl) {
+    const input = document.getElementById("guessInput");
+    input.value = optionEl.dataset.value;
+    closeDropdownUI(document.getElementById("guessCombobox"), input);
+}
+
+function itemImagePaths(itemName) {
+    return {
+        src: `${currentMode.imageFolder}${encodeURIComponent(itemName)}.png`,
+        fallback: `${currentMode.imageFolder}missing.png`
+    };
 }
 
 async function startMode(modeKey) {
@@ -101,7 +285,11 @@ async function startMode(modeKey) {
 
     renderTableHeader();
     await loadItems();
-    populateDatalist();
+
+    const guessInput = document.getElementById("guessInput");
+    guessInput.value = "";
+    document.getElementById("guessListbox").innerHTML = "";
+    closeDropdownUI(document.getElementById("guessCombobox"), guessInput, false);
 
     startRound();
 }
@@ -143,16 +331,6 @@ async function loadItems() {
             item[cat.key] = stats[cat.jsonKey];
         });
         return item;
-    });
-}
-
-function populateDatalist() {
-    const datalist = document.getElementById("itemList");
-    datalist.innerHTML = "";
-    ITEMS.forEach(item => {
-        const option = document.createElement("option");
-        option.value = item.name;
-        datalist.appendChild(option);
     });
 }
 
@@ -287,8 +465,7 @@ function renderGuessRow(result, guess) {
 function imageCell(itemName) {
     if (!currentMode.imageFolder) return "";
 
-    const src = `${currentMode.imageFolder}${encodeURIComponent(itemName)}.png`;
-    const fallback = `${currentMode.imageFolder}missing.png`;
+    const { src, fallback } = itemImagePaths(itemName);
 
     return `<td><img src="${src}" alt="${itemName}" class="item-image"
         onerror="this.onerror=null; this.src='${fallback}';"></td>`;

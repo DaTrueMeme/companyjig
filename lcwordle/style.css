@@ -332,15 +332,37 @@ body {
     height: 100vh;
 }
 
-#game #modeSelect {
+/* Custom mode dropdown (replaces native <select>) */
+
+#game .modeSelectDiv {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin: 10px;
+}
+
+#game .dropdown {
+    position: relative;
+    min-width: 200px;
+    text-align: left;
+}
+
+#game .dropdown .trigger {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+
     background-color: #cfa8a6;
     border: none;
     border-radius: 5px;
     padding: 10px;
-    margin: 10px;
     color: white;
     text-shadow: 0px 1px 1px #000;
     box-shadow: 5px 5px 0px #00000050;
+    font: inherit;
+    cursor: pointer;
 
     transition:
         background-color 0.2s ease,
@@ -348,15 +370,143 @@ body {
         transform 0.2s ease;
 }
 
-#game #modeSelect:hover {
+#game .dropdown .trigger:hover {
     background-color: #f3cfcf;
     box-shadow: 8px 8px 3px #00000050;
     transform: translate(-3px, -3px);
+}
+
+#game .dropdown .trigger:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(46, 111, 94, 0.35), 5px 5px 0px #00000050;
+}
+
+#game .dropdown .chevron {
+    flex-shrink: 0;
+    transition: transform 0.15s ease;
+}
+
+#game .dropdown[data-open="true"] .chevron {
+    transform: rotate(180deg);
+}
+
+#game .dropdown .listbox,
+#game .combobox .listbox {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    right: 0;
+    background-color: #b97e7a;
+    border-radius: 5px;
+    box-shadow: 5px 5px 0px #00000050;
+    padding: 4px;
+    z-index: 20;
+    display: none;
+    max-height: 260px;
+    overflow-y: auto;
+    text-align: left;
+}
+
+#game .dropdown[data-open="true"] .listbox,
+#game .combobox[data-open="true"] .listbox {
+    display: block;
+}
+
+#game .dropdown .option,
+#game .combobox .option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    border-radius: 4px;
+    color: white;
+    text-shadow: 0px 1px 1px #000;
     cursor: pointer;
 }
 
-#game #endlessToggle {
-    box-shadow: 3px 3px 0px #00000050;
+#game .dropdown .option:hover,
+#game .dropdown .option.active,
+#game .combobox .option:hover,
+#game .combobox .option.active {
+    background-color: #f3cfcf;
+}
+
+#game .dropdown .option[aria-selected="true"] {
+    font-weight: bold;
+}
+
+#game .combobox .option img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+#game .combobox .option-empty {
+    padding: 8px 10px;
+    color: white;
+    text-shadow: 0px 1px 1px #000;
+    opacity: 0.7;
+    cursor: default;
+}
+
+/* Combobox wraps the guess input so the listbox can anchor to it */
+#game .combobox {
+    position: relative;
+    display: inline-block;
+    width: 50%;
+    margin: 10px;
+    vertical-align: middle;
+}
+
+#game .combobox #guessInput {
+    width: 100%;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+#game .endlessToggleLabel {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    user-select: none;
+}
+
+.toggle #endlessToggle {
+    position: absolute;
+    opacity: 0;
+    width: 40px;
+    height: 22px;
+}
+
+.toggle .track {
+    width: 40px;
+    height: 22px;
+    background-color: #cfa8a6;
+    border-radius: 999px;
+    position: relative;
+    transition: background-color 0.2s ease;
+    flex-shrink: 0;
+}
+
+.toggle .thumb {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 18px;
+    height: 18px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.2s ease;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.toggle input:checked ~ .track { background-color: #f3cfcf; }
+.toggle input:checked ~ .track .thumb { transform: translateX(18px); }
+.toggle input:focus-visible ~ .track {
+    box-shadow: 0 0 0 3px rgba(46, 111, 94, 0.25);
 }
 
 #game #newRoundButton {
